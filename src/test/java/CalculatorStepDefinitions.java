@@ -1,4 +1,6 @@
-package com.qa;
+import com.qa.Calculator;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -18,14 +20,18 @@ public class CalculatorStepDefinitions {
 
     @When("I add {int} and {int}")
     public void i_add_and(Integer int1, Integer int2) {
-        // Write code here that turns the phrase above into concrete actions
-        calc.push(int1); calc.push(int2); calc.push("+");
-//        throw new io.cucumber.java.PendingException();
+        calc.push(int1);
+        calc.push(int2);
+        calc.push("+");
     }
 
     @Then("the result is {int}")
-    public void the_result_is(Integer int1) {
+    public void the_result_is(double expected) {
         // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        Number val = calc.value();
+        assertEquals(expected, val);
+//        throw new io.cucumber.java.PendingException();
     }
+
+
 }
